@@ -126,12 +126,9 @@ fun ProfileScreen(
 
                 // Mastered & Beaten
                 item {
-                    val masteredCount = awards?.MasteredCount ?: viewModel.masteredGames.size
-                    val beatenCount = awards?.BeatenCount ?: viewModel.beatenGames.size
-                    
                     BetterAwardsSummary(
-                        mastered = masteredCount,
-                        beaten = beatenCount,
+                        mastered = awards?.MasteredCount ?: 0,
+                        beaten = awards?.BeatenCount ?: 0,
                         isOwn = isOwn
                     )
                 }

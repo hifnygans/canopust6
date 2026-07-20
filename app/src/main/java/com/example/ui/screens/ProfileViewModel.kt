@@ -61,8 +61,9 @@ class ProfileViewModel(
     }
     
     val beatenGames by derivedStateOf {
-        // Only count as "Beaten" (completed) if it's 100% but not in hardcore, as a fallback
-        completedGames.filter { it.pctWonDouble >= 100.0 && it.HardcoreMode == 0 }
+        // Fallback beaten logic: in RA, 'Beaten' usually refers to non-hardcore 100% OR specific completion achievements.
+        // Since we can't easily know completion achievements without more API calls, we'll default to 0 if API awards fail.
+        emptyList<CompletedGame>()
     }
 
     init {
