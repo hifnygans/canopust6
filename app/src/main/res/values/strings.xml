@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Canopus T6</string>
+    <string name="app_tagline">UNOFFICIAL RETROACHIEVEMENTS CLIENT</string>
+    <string name="about_title">About Canopus T6</string>
+    <string name="about_version">Version 1.0.0</string>
+    <string name="about_developer">Developed by Hifny Sawyer</string>
+    <string name="about_description">Canopus T6 is a specialized mobile client for RetroAchievements, designed for enthusiasts who want a streamlined and elegant way to track their progress, explore games, and engage with the community.</string>
+    <string name="about_license_title">Licensing</string>
+    <string name="about_license_text">This application is distributed under the MIT License. It uses the official RetroAchievements API. RetroAchievements and related marks are property of their respective owners.</string>
+    <string name="about_copyright">© 2026 Hifny Sawyer. All rights reserved.</string>
+</resources>

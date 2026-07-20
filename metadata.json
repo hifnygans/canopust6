@@ -1,0 +1,6 @@
+{
+  "name": "Canopus T6",
+  "description": "Unofficial RetroAchievements Client. A premium mobile companion for RetroAchievements, by Hifny Sawyer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
