@@ -46,3 +46,9 @@ build/
 
 # Kotlin
 .kotlin/
+
+# AI Studio
+.aistudio/
+metadata.json
+.build-outputs/
+debug.keystore.base64
