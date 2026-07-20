@@ -18,8 +18,8 @@ android {
     applicationId = "com.aistudio.canopus.t6.hifny"
     minSdk = 24
     targetSdk = 36
-    versionCode = 1
-    versionName = "1.0"
+    versionCode = 102
+    versionName = "1.0.2"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
