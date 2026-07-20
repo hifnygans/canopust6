@@ -14,19 +14,4 @@ This is a simple mobile companion for RetroAchievements.org, utilizing their pub
 - **Search**: Easily find any game or user on RetroAchievements.
 - **Automatic Releases**: Integrated GitHub Actions to automatically build and release APKs on every push.
 
-## Screenshots
-<p align="center">
-  <img src="screenshots/home.png" width="30%" />
-  <img src="screenshots/profile.png" width="30%" />
-  <img src="screenshots/game_detail.png" width="30%" />
-</p>
-<p align="center">
-  <img src="screenshots/community.png" width="30%" />
-  <img src="screenshots/stats_1.png" width="30%" />
-  <img src="screenshots/stats_2.png" width="30%" />
-</p>
-<p align="center">
-  <img src="screenshots/settings.png" width="30%" />
-</p>
-
 *Disclaimer: This is an unofficial application and is not affiliated with or endorsed by RetroAchievements.*
