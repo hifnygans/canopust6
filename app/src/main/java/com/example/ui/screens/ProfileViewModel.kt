@@ -82,7 +82,9 @@ class ProfileViewModel(
                 repository.getUserAwards(username).onSuccess { userAwards = it }
                 // Increase minutes to get more achievements for "ALL" view
                 repository.getRecentAchievements(username, minutes = 525600).onSuccess { recentAchievements = it } 
-                repository.getUserCompletedGames(username).onSuccess { completedGames = it }
+                repository.getUserCompletedGames(username).onSuccess { list ->
+                    completedGames = list.distinctBy { it.GameID }
+                }
             } catch (e: Exception) {
                 error = e.message ?: "Failed to load profile"
             } finally {

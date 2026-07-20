@@ -2,6 +2,7 @@ package com.example.ui.screens
 
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -524,6 +525,26 @@ fun AchievementBadgeItem(achievement: com.example.data.api.RecentAchievement) {
                 .aspectRatio(1f)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.surfaceVariant)
+                .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.3f), CircleShape)
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = achievement.Title ?: "Unknown",
+            style = MaterialTheme.typography.labelSmall,
+            fontSize = 8.sp,
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            modifier = Modifier.basicMarquee(),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+        )
+        Text(
+            text = achievement.GameTitle ?: "Unknown Game",
+            style = MaterialTheme.typography.labelSmall,
+            fontSize = 7.sp,
+            color = MaterialTheme.colorScheme.secondary,
+            maxLines = 1,
+            modifier = Modifier.basicMarquee(),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center
         )
     }
 }
