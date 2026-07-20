@@ -146,13 +146,21 @@ interface RetroAchievementsService {
         @Query("y") apiKey: String
     ): Response<List<RecentGameAwardResponse>>
 
-    @GET("API_GetUserGameSuggestions.php")
-    suspend fun getGameSuggestions(
+    @GET("API_GetActivePlayers.php")
+    suspend fun getActivePlayers(
         @Query("z") username: String,
-        @Query("y") apiKey: String,
-        @Query("u") targetUser: String
-    ): Response<List<GameSuggestionResponse>>
+        @Query("y") apiKey: String
+    ): Response<List<ActivePlayer>>
 }
+
+data class ActivePlayer(
+    @Json(name = "User") val User: String? = null,
+    @Json(name = "RichPresenceMsg") val RichPresenceMsg: String? = null,
+    @Json(name = "GameID") val GameID: Int? = null,
+    @Json(name = "GameTitle") val GameTitle: String? = null,
+    @Json(name = "ConsoleName") val ConsoleName: String? = null,
+    @Json(name = "LastActivity") val LastActivity: String? = null
+)
 
 data class GameSuggestionResponse(
     @Json(name = "ID") val ID: Any? = null,

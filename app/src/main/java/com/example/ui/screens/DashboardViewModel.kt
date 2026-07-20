@@ -29,6 +29,8 @@ class DashboardViewModel(
         private set
     var activeClaims by mutableStateOf<List<ActiveClaimResponse>>(emptyList())
         private set
+    var activePlayers by mutableStateOf<List<com.example.data.api.ActivePlayer>>(emptyList())
+        private set
     var isLoading by mutableStateOf(false)
         private set
     var error by mutableStateOf<String?>(null)
@@ -49,6 +51,7 @@ class DashboardViewModel(
                 repository.getAchievementOfTheWeekHistory().onSuccess { aotwHistory = it }.onFailure { error = it.message }
                 repository.getNews(count = 30).onSuccess { news = it }.onFailure { error = it.message }
                 repository.getActiveClaims().onSuccess { activeClaims = it }.onFailure { error = it.message }
+                repository.getActivePlayers().onSuccess { activePlayers = it }.onFailure { error = it.message }
             } catch (e: Exception) {
                 error = e.message ?: "Failed to refresh dashboard"
             } finally {

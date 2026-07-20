@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
@@ -31,6 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -135,6 +137,23 @@ fun MainScreen(
                     }
                     items(recentlyPlayed.take(3)) { game ->
                         ModernGameItem(game, onNavigateToGame)
+                    }
+                }
+
+                // Active Players
+                if (viewModel.activePlayers.isNotEmpty()) {
+                    item {
+                        SectionHeader("Active Players", Icons.Default.People)
+                    }
+                    item {
+                        androidx.compose.foundation.lazy.LazyRow(
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            contentPadding = PaddingValues(bottom = 8.dp)
+                        ) {
+                            items(viewModel.activePlayers.take(15)) { player ->
+                                ActivePlayerPill(player)
+                            }
+                        }
                     }
                 }
 
@@ -320,6 +339,71 @@ fun ModernActivityItem(achievement: com.example.data.api.RecentAchievement) {
         Column {
             Text(achievement.Title ?: "Unlocked", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
             Text("${achievement.GameTitle} • ${achievement.Date?.take(10)}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.secondary)
+        }
+    }
+}
+
+@Composable
+fun ActivePlayerPill(player: com.example.data.api.ActivePlayer) {
+    Surface(
+        color = MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp),
+        shape = MaterialTheme.shapes.large,
+        modifier = Modifier.width(240.dp),
+        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f))
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box {
+                AsyncImage(
+                    model = "https://retroachievements.org/UserPic/${player.User}.png",
+                    contentDescription = null,
+                    modifier = Modifier.size(44.dp).clip(CircleShape),
+                    contentScale = ContentScale.Crop
+                )
+                Box(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .background(Color(0xFF4CAF50), CircleShape)
+                        .border(1.5.dp, MaterialTheme.colorScheme.surface, CircleShape)
+                        .align(Alignment.BottomEnd)
+                )
+            }
+            Spacer(Modifier.width(12.dp))
+            Column {
+                Text(
+                    player.User ?: "User",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Black,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                val statusText = if (!player.RichPresenceMsg.isNullOrBlank()) {
+                    player.RichPresenceMsg
+                } else if (!player.GameTitle.isNullOrBlank()) {
+                    "Playing ${player.GameTitle}"
+                } else {
+                    "Active on RA"
+                }
+                Text(
+                    statusText,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    maxLines = 2,
+                    lineHeight = 12.sp,
+                    overflow = TextOverflow.Ellipsis
+                )
+                if (!player.ConsoleName.isNullOrBlank()) {
+                    Text(
+                        player.ConsoleName,
+                        style = MaterialTheme.typography.labelSmall,
+                        fontSize = 8.sp,
+                        color = MaterialTheme.colorScheme.secondary,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
         }
     }
 }

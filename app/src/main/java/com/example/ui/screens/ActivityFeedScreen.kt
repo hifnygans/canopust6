@@ -8,9 +8,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Stars
 import androidx.compose.material.icons.filled.WorkspacePremium
@@ -72,6 +75,32 @@ fun ActivityFeedScreen(
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                // World Activity (Global Active Players)
+                if (viewModel.activePlayers.isNotEmpty()) {
+                    item { SectionHeader("World Activity (Live)", Icons.Default.Public) }
+                    items(viewModel.activePlayers.take(50)) { player ->
+                        ActivityCard(
+                            title = player.User ?: "User",
+                            subtitle = player.RichPresenceMsg ?: "Playing ${player.GameTitle ?: "Unknown Game"}",
+                            trailing = player.ConsoleName ?: "",
+                            imageUrl = "https://retroachievements.org/UserPic/${player.User}.png"
+                        )
+                    }
+                }
+
+                // Global World Feed (Recent Achievements)
+                if (viewModel.globalRecentUnlocks.isNotEmpty()) {
+                    item { SectionHeader("Recent World Unlocks", Icons.Default.Language) }
+                    items(viewModel.globalRecentUnlocks.take(30)) { unlock ->
+                        ActivityCard(
+                            title = unlock.User ?: "User",
+                            subtitle = "Earned ${unlock.AchievementTitle ?: "Achievement"} in ${unlock.GameTitle ?: "Unknown Game"}",
+                            trailing = "${unlock.Points ?: 0}",
+                            imageUrl = "https://retroachievements.org/Badge/${unlock.BadgeName}.png"
+                        )
+                    }
+                }
+
                 // Recent Unlocks
                 if (viewModel.userRecentUnlocks.isNotEmpty()) {
                     item { SectionHeader("Recent Unlocks", Icons.Default.EmojiEvents) }
@@ -164,7 +193,7 @@ fun ActivityCard(
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(title, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Text(subtitle, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(subtitle, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 3, overflow = TextOverflow.Ellipsis)
             }
             if (trailing.isNotEmpty()) {
                 Text(trailing, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Black, color = MaterialTheme.colorScheme.primary)

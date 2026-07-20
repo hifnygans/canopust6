@@ -1,21 +1,24 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🌌 Canopus T6
+**Unofficial RetroAchievements Client**
 
-# Run and deploy your AI Studio app
+Canopus T6 is a premium, high-performance Android companion for the RetroAchievements community. It provides a native, fluid experience for tracking progress, viewing global activity, and managing your retro gaming profile.
 
-This contains everything you need to run your app locally.
+## 🛡️ Privacy & Security
+**Strictly Client-Side.** This application is designed with privacy as a core principle.
+- **No Data Collection**: No personal data, usage statistics, or telemetry is collected.
+- **Direct Integration**: Communicates directly with official RetroAchievements servers.
+- **Local Storage**: Credentials and API keys are stored securely on-device only.
 
-View your app in AI Studio: https://ai.studio/apps/2f36189a-6f5a-4342-a834-864a57ecc566
+## ✨ Features
+- **Global Social Hub**: Real-time "Active Players" list and global achievement feed.
+- **Rich Presence**: Full support for detailed status messages from the RA API.
+- **Profile Mastery**: Track mastered games, user awards, and progress percentages.
+- **Optimized UI**: Modern Material 3 interface with dynamic theming and adaptive layouts.
 
-## Run Locally
+## 🚀 Setup
+1. Get your API Key from [RetroAchievements Settings](https://retroachievements.org/settings).
+2. Enter your credentials in the app.
+3. Your data stays on your device.
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
-
-
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+---
+*Developed by Hifny Sawyer.*

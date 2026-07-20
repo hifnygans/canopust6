@@ -387,6 +387,25 @@ class RetroAchievementsRepository(
         }
     }
 
+    suspend fun getActivePlayers(): Result<List<com.example.data.api.ActivePlayer>> {
+        val cacheKey = "active_players"
+        getCached<List<com.example.data.api.ActivePlayer>>(cacheKey)?.let { return Result.success(it) }
+
+        return try {
+            val username = sessionManager.username.first() ?: return Result.failure(Exception("Not logged in"))
+            val apiKey = sessionManager.apiKey.first() ?: return Result.failure(Exception("Not logged in"))
+            val response = apiService.getActivePlayers(username, apiKey)
+            if (response.isSuccessful && response.body() != null) {
+                saveCache(cacheKey, response.body()!!)
+                Result.success(response.body()!!)
+            } else {
+                Result.failure(Exception("Failed to fetch active players"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     suspend fun getUserCompletedGames(target: String? = null): Result<List<CompletedGame>> {
         val username = sessionManager.username.first() ?: return Result.failure(Exception("Not logged in"))
         val targetUser = target ?: username

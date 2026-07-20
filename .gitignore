@@ -16,3 +16,33 @@
 local.properties
 .env
 debug.keystore
+
+# Android Studio
+*.apk
+*.aar
+*.jks
+*.keystore
+!debug.keystore
+
+# Generated files
+app/build/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# Android Studio / IntelliJ project files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Gradle files
+.gradle/
+build/
+
+# Kotlin
+.kotlin/

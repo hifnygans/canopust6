@@ -119,8 +119,8 @@ fun AboutScreen(
 
             OutlinedButton(
                 onClick = {
-                    // GitHub link placeholder
-                    Toast.makeText(context, "GitHub repository link coming soon!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/hifnygans/canopust6"))
+                    context.startActivity(intent)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 shape = MaterialTheme.shapes.medium

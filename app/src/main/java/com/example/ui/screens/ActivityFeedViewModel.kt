@@ -34,6 +34,7 @@ class ActivityFeedViewModel(
     var beatenGames by mutableStateOf<List<CompletedGame>>(emptyList())
     var globalRecentUnlocks by mutableStateOf<List<GlobalRecentAchievement>>(emptyList())
     var followingList by mutableStateOf<List<String>>(emptyList())
+    var activePlayers by mutableStateOf<List<com.example.data.api.ActivePlayer>>(emptyList())
 
     init {
         loadActivity()
@@ -48,6 +49,7 @@ class ActivityFeedViewModel(
                 val completedGamesDeferred = async { repository.getUserCompletedGames() }
                 val globalUnlocksDeferred = async { repository.getGlobalRecentAchievements(120) } // Last 2 hours
                 val followingDeferred = async { repository.getUserFollowerAndFollowing() }
+                val activePlayersDeferred = async { repository.getActivePlayers() }
 
                 recentUnlocksDeferred.await().onSuccess { userRecentUnlocks = it }
                 
@@ -58,6 +60,7 @@ class ActivityFeedViewModel(
 
                 globalUnlocksDeferred.await().onSuccess { globalRecentUnlocks = it }
                 followingDeferred.await().onSuccess { followingList = it.Following ?: emptyList() }
+                activePlayersDeferred.await().onSuccess { activePlayers = it }
 
             } catch (e: Exception) {
                 error = e.message ?: "Failed to load activity feed"
