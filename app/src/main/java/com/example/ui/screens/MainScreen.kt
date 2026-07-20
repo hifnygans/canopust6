@@ -379,12 +379,12 @@ fun ActivePlayerPill(player: com.example.data.api.ActivePlayer) {
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                val statusText = if (!player.RichPresenceMsg.isNullOrBlank()) {
+                val statusText = if (!player.RichPresenceMsg.isNullOrBlank() && player.RichPresenceMsg != "No rich presence") {
                     player.RichPresenceMsg
                 } else if (!player.GameTitle.isNullOrBlank()) {
                     "Playing ${player.GameTitle}"
                 } else {
-                    "Active on RA"
+                    "Online"
                 }
                 Text(
                     statusText,

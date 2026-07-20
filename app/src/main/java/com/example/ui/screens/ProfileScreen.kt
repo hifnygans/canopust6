@@ -126,7 +126,14 @@ fun ProfileScreen(
 
                 // Mastered & Beaten
                 item {
-                    BetterAwardsSummary(viewModel.masteredGames.size, viewModel.beatenGames.size, isOwn)
+                    val masteredCount = awards?.MasteredCount ?: viewModel.masteredGames.size
+                    val beatenCount = awards?.BeatenCount ?: viewModel.beatenGames.size
+                    
+                    BetterAwardsSummary(
+                        mastered = masteredCount,
+                        beaten = beatenCount,
+                        isOwn = isOwn
+                    )
                 }
 
                 // Grouping Selector

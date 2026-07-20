@@ -57,11 +57,12 @@ class ProfileViewModel(
     var layoutType by mutableStateOf(LayoutType.LIST)
 
     val masteredGames by derivedStateOf {
-        completedGames.filter { it.pctWonDouble >= 100.0 }
+        completedGames.filter { it.pctWonDouble >= 100.0 && it.HardcoreMode == 1 }
     }
     
     val beatenGames by derivedStateOf {
-        completedGames.filter { it.pctWonDouble < 100.0 && it.pctWonDouble >= 50.0 }
+        // Only count as "Beaten" (completed) if it's 100% but not in hardcore, as a fallback
+        completedGames.filter { it.pctWonDouble >= 100.0 && it.HardcoreMode == 0 }
     }
 
     init {
