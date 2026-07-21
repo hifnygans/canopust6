@@ -131,7 +131,7 @@ fun AboutScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = "© 2026 Canopus Development Team\nLicensed under GPL 3.0",
+                text = "© 2026 Hifny Sawyer\nLicensed under GPL 3.0",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
